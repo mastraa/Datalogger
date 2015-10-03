@@ -1,0 +1,23 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = pdflatex
+
+\chapter{Invio e ricezione dati}
+La sintassi generale per l'invio e la ricezione di dati, siano essi comandi o dati rilevati, è la seguente:
+\begin{lstlisting}%
+	[firstline=1, lastline=3, caption={sintassi per lo scambio seriale di informazioni}, label={lst:stringaFPV}]
+	$TYPE,val_1,val_2,...,val_n*checksum\n
+\end{lstlisting}
+dove \$ è il carattere di inizio stringa, TYPE è un byte che identifica il tipo di stringa che stiamo inviando, dopo la virgola invece vengono inseriti i comandi sotto forma di byte anch'essi suddivisi da virgole. Siamo in grado di inviare un byte alla volta, quindi tutti i formati vanno suddivisi in bytes e inviati un pezzo alla volta, quindi va prevista una ricomposizione da parte del ricevente.
+
+\'E evidente che si tratti di un formato del tutto simile alle stringhe NMEA, con un'aggiunta importante: in questo caso, dato che vogliamo scambiare solo valori numerici, aumentiamo le prestazioni inviando direttamente il valore sotto forma di byte e non sotto forma di carattere.\newline
+Si prenda ad esempio il valore $255$, il massimo inviabile con un solo byte, se lo inviassimo sotto forma di caratteri dovremmo inviare tre bytes, facendolo sotto forma di byte riduciamo il peso dell'invio e aumentiamo la velocità.
+
+Si deve però prestare attenzione al tipo di device che abbiamo di fronte, questo è possibile farlo solo qualora si abbia il controllo su entrambi i lati dello scambio di informazioni. Qualora si abbia a che fare con un GPS per fare un esempio, dobbiamo uniformarci al suo protocollo che invece invia i caratteri singolarmente e quindi per interpretarli in modo corretto è necessario conoscere la codifica ASCII, un approfondimento è presente nelle appendici della guida.
+
+\section{FPV Telemetry}
+Lo scambio di informazioni in telemetria è reso possibile attraverso il modulo FPV che lavora a $533MHz$. Lato \name è collegato ad una porta seriale (di default alla numero 3), lato computer invece si collega alla porta USB in quanto il modulo di terra è dotato di un convertitore USB-UART. La seriale lavora a $57600 baud$.
+
+Proprio per questo modulo abbiamo previsto il sistema di comunicazione indicato nel listato \{\ref{lst:stringaFPV}\}.
+
+Al momento il sistema è predisposto per la ricezione di comandi composti da un byte di type e uno di comando, per modificare la lunghezza è sufficiente andare a cambiare il valore della label LENGTH presente nel file Const.h allegato al codice sorgente, il valore li presente tiene conto solo dei byte di comando e non quelli di tipo.
+

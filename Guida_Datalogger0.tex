@@ -1,0 +1,64 @@
+\documentclass[11pt, a4paper, twoside, openany]{report}
+\usepackage[T1]{fontenc}%codifica dei font
+\usepackage[utf8]{inputenc}%input encoding
+\usepackage[english,italian]{babel}
+\usepackage{graphicx}%includere le figure
+\usepackage[italian]{varioref}%permette citazioni (con \vref) in cui si inserisce anche il numero di pagina
+\usepackage[style=numeric]{biblatex}
+\usepackage{xcolor}
+\definecolor{darkgreen}{rgb}{0.13, 0.55, 0.13}
+
+\newcommand{\name}{DUILIO }
+\newcommand{\software}{Amphitrite }
+
+%Inclusione Package LISTINGS e impostazione delle opzioni
+\usepackage{listings}
+\lstset{basicstyle=\small\ttfamily,
+numbers=left,
+tabsize=2,
+frame=lines,
+keywordstyle=\color{red}\bfseries,
+commentstyle=\color{darkgreen},
+stringstyle=\color{blue}
+}
+\addto\captionsitalian{\renewcommand{\lstlistingname}{Codice}}
+\addto\captionsitalian{\renewcommand{\lstlistlistingname}{Elenco dei codici}}
+\lstset{language=C}
+
+%%%ESEMPIO
+%\begin{lstlisting}%
+%	[firstline=1, lastline=3, caption={codice}, label={lst:prova}]
+%	for (i=1; i<2; ++i){
+%		Serial.println("helloworld");//commento
+%	}
+%\end{lstlisting}
+
+%%%%%%%%%%%%
+
+
+
+\bibliography{biblio}
+\raggedbottom
+
+\begin{document}
+	\begin{abstract}
+Il presente fascicolo vuole essere un riassunto delle fasi di costruzioni del primo modello di datalogger utilizzato per le imbarcazioni del Mètis Sailing Unipd e dei suoi successivi sviluppi. Vuole essere un riferimento per chiunque abbia intenzione di portare avanti il progetto e lo sviluppo, voglia costruire un nuovo modello o semplicemente voglia imparare ad utilizzare lo strumento utilizzando questo fascicolo come istruzioni per l'uso.
+	\end{abstract}
+	
+	\tableofcontents
+	\include{Capitoli/intro}
+	\include{Capitoli/obiettivi}
+	\include{Capitoli/trasmissione}
+	
+	\appendix
+	\include{Appendici/ascii}
+
+	
+
+	\nocite{*}
+	\printbibliography
+
+	\listoffigures
+	\listoftables
+	\lstlistoflistings
+\end{document}

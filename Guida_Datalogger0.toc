@@ -1,0 +1,15 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {italian}
+\defcounter {refsection}{0}\relax 
+\select@language {italian}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Introduzione}{3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Obiettivi}{5}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Invio e ricezione dati}{6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}FPV Telemetry}{6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}I caratteri ASCII}{8}

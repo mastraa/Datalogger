@@ -1,0 +1,19 @@
+[0] Config.pm:324> INFO - This is Biber 2.1
+[0] Config.pm:327> INFO - Logfile is 'Guida_Datalogger0.blg'
+[41] biber-darwin:276> INFO - === Sat Oct  3, 2015, 13:05:00
+[41] Biber.pm:333> INFO - Reading 'Guida_Datalogger0.bcf'
+[139] Biber.pm:642> INFO - Using all citekeys in bib section 0
+[160] Biber.pm:2977> INFO - Processing section 0
+[177] Biber.pm:3115> INFO - Looking for bibtex format file 'biblio.bib' for section 0
+[188] bibtex.pm:1021> INFO - Decoding LaTeX character macros into UTF-8
+[192] bibtex.pm:895> INFO - Found BibTeX data source 'biblio.bib'
+[195] Utils.pm:146> WARN - Name "M.Poli, C.Bettanini, N.Bressanin, S.Debei, E.Di Iorio, A.Madonna, A.Mastrangelo, M.Pezzato, F.Rodighiero, G.Venturelli" has too many commas: skipping name
+[196] Utils.pm:146> WARN - Datamodel: Entry 'url:madgwick' (biblio.bib): Invalid format 'http://www.x-io.co.uk/open-source-imu-and-ahrs-algorithms/' of date field 'urldate' - ignoring
+[201] Utils.pm:146> WARN - The field 'author' in entry 'art:sounding' cannot be null, deleting it
+[271] UCollate.pm:66> INFO - Overriding locale 'it-IT' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[271] UCollate.pm:66> INFO - Overriding locale 'it-IT' defaults 'variable = shifted' with 'variable = non-ignorable'
+[271] Biber.pm:2854> INFO - Sorting list 'nty' of type 'entry' with scheme 'nty' and locale 'it-IT'
+[271] Biber.pm:2858> INFO - No sort tailoring available for locale 'it-IT'
+[285] bbl.pm:505> INFO - Writing 'Guida_Datalogger0.bbl' with encoding 'UTF-8'
+[286] bbl.pm:596> INFO - Output to Guida_Datalogger0.bbl
+[286] Biber.pm:106> INFO - WARNINGS: 3

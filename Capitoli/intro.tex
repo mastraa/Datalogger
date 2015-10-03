@@ -1,0 +1,21 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = pdflatex
+
+\chapter{Introduzione}
+
+Questa guida si rivolge sia a chi desidera mettere in funzione \name, sia a chi vuole intraprendere nuovi sviluppi del sistema, per questi ultimi, prima di intraprendere lo studio della presente guida, è fortemente consigliata la lettura di alcune guide di base sull'uso di Arduino, sui protocolli di comunicazione seriale e in particolare l'I$^2$C, lo SPI e la comunicazione seriale UART (sulla quale si deve prestare molta attenzione alla questione byte-ASCII). Infine può tornare utile la conoscenza del protocollo OneWire.
+
+Di fondamentale importanza è avere una basilare esperienza di programmazione e possibilmente un po' di conoscenza del linguaggio C.
+
+Infine è desiderabile, per tutti i lettori, conoscere il modo in cui determinati sensori funzionano, benchè molte feature siano indicate nei capitoli dedicati è sicuramente fondamentale far riferimento ai datasheet per comprenderne meglio le caratteristiche. In particolare è utile conoscere il funzionamento di accelerometri, giroscopi e magnetometri MEMS, come interagire con essi e come si può ricavare l'assetto dai dati 'raw' ottenuti.
+
+Per gli aspiranti alla sola utilizzazione del sistema si consiglia una lettura dei soli capitoli relativi alla messa in funzione dello strumento e all'interpretazione dei dati. Il capitolo su \software darà le istruzioni sull'interfaccia grafica appositamente studiata per interagire con \name per la lettura dei dati in tempo reale e per l'invio di determinati comandi e settaggi.
+Questo software, scritto in Python2.7, è in grado anche di leggere i file *.txt salvati su SD dal datalogger.
+
+Per una trattazione sommaria di alcuni argomenti utili si rimanda alle appendici, mentre per quanto concerne lo studio approfondito del filtro utilizzato per ricavare l'assetto si rimanda alle seguenti fonti:
+
+\begin{itemize}
+\item Sebastian O.H. Madgwick. An efficient orientation filter for inertial and inertial/magnetic sensor arrays. Rapp. tecn. Bristol University 2010.
+\item Sebastian O.H. Madgwick. http://www.c-io.co.uk/open-source-imu-and-ahrs-algorithms
+\item R. Vaidyanathan, Sebastian O.H. Madgwick, A.J.L. Harrison. Estimation of IMU and MARG orientation using a gradient descent algorithm. In:Rehabilitation Robotics (ICORR), 2011 IEEE International Conference on (2011), pp 1-7.
+\end{itemize}
