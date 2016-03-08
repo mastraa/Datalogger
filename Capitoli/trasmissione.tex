@@ -7,12 +7,12 @@ La sintassi generale per l'invio e la ricezione di dati, siano essi comandi o da
 	[firstline=1, lastline=3, caption={sintassi per lo scambio seriale di informazioni}, label={lst:stringaFPV}]
 	$TYPE,val_1,val_2,...,val_n*checksum\n
 \end{lstlisting}
-dove \$ è il carattere di inizio stringa, TYPE è un byte che identifica il tipo di stringa che stiamo inviando, dopo la virgola invece vengono inseriti i comandi sotto forma di byte anch'essi suddivisi da virgole. Siamo in grado di inviare un byte alla volta, quindi tutti i formati vanno suddivisi in bytes e inviati un pezzo alla volta, quindi va prevista una ricomposizione da parte del ricevente.
+dove \$ è il carattere di inizio stringa, TYPE è un byte che identifica il tipo di stringa che stiamo inviando, dopo la virgola invece vengono inseriti i bytes che formano la stringa. La comunicazione seriale spedisce e riceve un byte per volta, i byte possono contenere informazioni numeriche o caratteri, dipende dal modo in cui vengono poi interpretati.
+Nelle appendici è presente una piccola guida sulla codifica ASCII al cui interno è presente la tabella [\ref{fig:tabellaAscii}] che mostra le conversioni nei vari tipi di codifica utilizzata.
 
-\'E evidente che si tratti di un formato del tutto simile alle stringhe NMEA, con un'aggiunta importante: in questo caso, dato che vogliamo scambiare solo valori numerici, aumentiamo le prestazioni inviando direttamente il valore sotto forma di byte e non sotto forma di carattere.\newline
-Si prenda ad esempio il valore $255$, il massimo inviabile con un solo byte, se lo inviassimo sotto forma di caratteri dovremmo inviare tre bytes, facendolo sotto forma di byte riduciamo il peso dell'invio e aumentiamo la velocità.
+\'E evidente che il formato utilizzato per inviare i dati sia del tutto simile alle stringhe NMEA, in questo caso però inviamo i byte in formato 'numerico', cioè il dato che ci arriva è pronto all'uso o al massimo va ricomposto con delle operazioni di Bit Shift per aumentarne la precisione. Questo ci permette di aumentare moltissimo le prestazioni, infatti si prenda ad esempio il valore $255$, il massimo inviabile con un solo byte, se lo inviassimo sotto forma di caratteri dovremmo inviare tre bytes (uno per ogni carattere che compone il numero), facendolo sotto forma di byte riduciamo il peso dell'invio e aumentiamo la velocità di comunicazione.
 
-Si deve però prestare attenzione al tipo di device che abbiamo di fronte, questo è possibile farlo solo qualora si abbia il controllo su entrambi i lati dello scambio di informazioni. Qualora si abbia a che fare con un GPS per fare un esempio, dobbiamo uniformarci al suo protocollo che invece invia i caratteri singolarmente e quindi per interpretarli in modo corretto è necessario conoscere la codifica ASCII, un approfondimento è presente nelle appendici della guida.
+Si deve però prestare attenzione al tipo di device che abbiamo di fronte, questo è possibile farlo solo qualora si abbia il controllo su entrambi i lati dello scambio di informazioni. Qualora si abbia a che fare con un GPS, per fare un esempio, dobbiamo uniformarci al suo protocollo che invece invia i caratteri singolarmente e quindi per interpretarli in modo corretto è necessario conoscere la codifica ASCII, un approfondimento è presente nelle appendici della guida.
 
 \section{FPV Telemetry}
 Lo scambio di informazioni in telemetria è reso possibile attraverso il modulo FPV che lavora a $533MHz$. Lato \name è collegato ad una porta seriale (di default alla numero 3), lato computer invece si collega alla porta USB in quanto il modulo di terra è dotato di un convertitore USB-UART. La seriale lavora a $57600 baud$.
@@ -21,3 +21,61 @@ Proprio per questo modulo abbiamo previsto il sistema di comunicazione indicato 
 
 Al momento il sistema è predisposto per la ricezione di comandi composti da un byte di type e uno di comando, per modificare la lunghezza è sufficiente andare a cambiare il valore della label LENGTH presente nel file Const.h allegato al codice sorgente, il valore li presente tiene conto solo dei byte di comando e non quelli di tipo.
 
+Per evitare sovraccarichi della seriale in accensione, nel caso di temporanee perdite di segnale o interruzione del software è presente un check nel codice di \name che in caso di silenzio prolungato ($60$ secondi attualmente, ma si può modificare attraverso la label $CONNECTION\_TIMEOUT$ In \software è invece presente una funzione automatica che a intervalli predeterminati (attualmente $60$ cicli della funzione che controlla l'orologio, quindi $60s$) invia un byte $\$0,4*4$.
+
+\begin{table}
+	\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			type byte & command byte & significato\\
+			\hline
+			\hline
+			0 & 0 & errore:\\
+			0 & 1 & errore:\\
+			0 & 2 & errore:\\
+			0 & 3 & errore:\\
+			0 & 4 & check connessione\\
+			0 & 5 & inizia a salvare e inviare dati\\
+			0 & 6 & ferma il salvataggio e l'invio di dati\\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Lista dei comandi attualmente disponibili} 
+	\label{tab:comandiFPV}
+\end{table}
+
+\section{Stringhe Disponibili}
+Le tabelle seguenti indicano quali sono e cosa contengono le stringhe disponibili. \'E possibile inviarle sia come byte ascii (generalmente è il metodo usato per salvare su SD), sia come byte numerici (usato per migliorare le prestazioni per l'invio wifi).
+La differenza tra i due è che nel secondo caso, per migliorare ulteriormente la prestazione, non sono indicati i 'reference' cioè le parti di stringa che indicano l'unità di misura o l'ordine dei dati. Non è possibile eliminarli dalle stringhe su file di testo per una questione di comprensibilità.
+
+\begin{table}
+	\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			type string & acronimo\\
+			\hline
+			\hline
+			\$MVUP & Mètis Vela UniPd\\
+			\$MVIC & Mètis Vela Infusion Check\\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Stringhe ascii disponibili} 
+	\label{tab:AsciiNMEA}
+\end{table}
+
+\begin{table}
+	\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			type byte & stringa di riferimento\\
+			\hline
+			\hline
+			1 & \$MVUP\\
+			10 &  \$MVIC\\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Relativi type byte in telemetria} 
+	\label{tab:ByteNMEA}
+\end{table}

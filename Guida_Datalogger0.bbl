@@ -49,6 +49,20 @@
       \field{title}{Fisica della Vela}
       \field{year}{1990}
     \endentry
+    \entry{ID}{article}{}
+      \name{author}{1}{}{%
+        {{hash=94ca3c9867c81b55dabaeef9559505d9}{Lionel\bibnamedelima Huertz}{L\bibinitperiod\bibinitdelim H\bibinitperiod}{Guillerm}{G\bibinitperiod}{}{}{Pierre\bibnamedelima Emmanuel}{P\bibinitperiod\bibinitdelim E\bibinitperiod}}%
+      }
+      \strng{namehash}{94ca3c9867c81b55dabaeef9559505d9}
+      \strng{fullhash}{94ca3c9867c81b55dabaeef9559505d9}
+      \field{sortinit}{L}
+      \field{sortinithash}{872351f18d0f736066eda0bf18bfa4f7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Ocean Engineering}
+      \field{title}{Database building and statistical methods to predict sailing yacht hydrodinamics}
+      \field{year}{2014}
+    \endentry
     \entry{rep:madgwick}{report}{}
       \name{author}{1}{}{%
         {{hash=e637f3385b9c8b52ede7d36e94dc600e}{Madgwick}{M\bibinitperiod}{Sebastian\bibnamedelima O.H.}{S\bibinitperiod\bibinitdelim O\bibinitperiod}{}{}{}{}}%
@@ -128,6 +142,19 @@
       \field{labeltitlesource}{title}
       \field{title}{TAC 11 Design Nautico, riflessioni tematiche ed esercitazioni progettuali}
       \field{year}{2002}
+    \endentry
+    \entry{art:barcaNumeri}{unpublished}{}
+      \name{author}{1}{}{%
+        {{hash=52cf906f4c7bbb58ed34181389abcfa3}{velarossa}{v\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{52cf906f4c7bbb58ed34181389abcfa3}
+      \strng{fullhash}{52cf906f4c7bbb58ed34181389abcfa3}
+      \field{sortinit}{v}
+      \field{sortinithash}{d18f5ce25ce0b5ca7f924e3f6c04870e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{La barca in "Numeri"}
+      \field{year}{2007}
     \endentry
   \endsortlist
 \endrefsection

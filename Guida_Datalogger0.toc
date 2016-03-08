@@ -10,6 +10,8 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {3}Invio e ricezione dati}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}FPV Telemetry}{6}
+\contentsline {section}{\numberline {3.1}FPV Telemetry}{7}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}I caratteri ASCII}{8}
+\contentsline {section}{\numberline {3.2}Stringhe Disponibili}{7}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}I caratteri ASCII}{9}
